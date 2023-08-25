@@ -18,7 +18,7 @@ export interface Cat {
 }
 
 interface ActivityEntry {
-  timestamp: Date;
+  date: string;
   minutesActive: number;
 }
 
