@@ -1,4 +1,4 @@
-import { Cat } from './../types/Cat'
+import type { Cat } from '@/types/Cat'
 
 export const catsData: Cat[] = [
   {
@@ -11,35 +11,35 @@ export const catsData: Cat[] = [
     status: 'Playing',
     activities: [
       {
-        date: "2023-08-25T10:00:00.000Z",
+        date: '2023-08-25T10:00:00.000Z',
         activity: 'Ate'
       },
       {
-        date: "2023-08-25T11:00:00.000Z",
+        date: '2023-08-25T11:00:00.000Z',
         activity: 'Slept'
       },
       {
-        date: "2023-08-25T12:00:00.000Z",
+        date: '2023-08-25T12:00:00.000Z',
         activity: 'Sunbathed'
-      },
+      }
     ],
     activityLog: [
       {
-        date: "2023-08-25T10:00:00.000Z",
+        date: '2023-08-25T10:00:00.000Z',
         minutesActive: 34
       },
       {
-        date: "2023-08-25T11:00:00.000Z",
+        date: '2023-08-25T11:00:00.000Z',
         minutesActive: 40
       },
       {
-        date: "2023-08-25T12:00:00.000Z",
+        date: '2023-08-25T12:00:00.000Z',
         minutesActive: 20
       }
     ],
     eatenBirds: [
       {
-        date: "2023-08-25T10:00:00.000Z",
+        date: '2023-08-25T10:00:00.000Z',
         count: 2
       }
     ]
@@ -55,39 +55,39 @@ export const catsData: Cat[] = [
     status: 'Sleeping',
     activities: [
       {
-        date: "2023-08-25T10:00:00.000Z",
+        date: '2023-08-25T10:00:00.000Z',
         activity: 'Ate'
       },
       {
-        date: "2023-08-25T11:00:00.000Z",
+        date: '2023-08-25T11:00:00.000Z',
         activity: 'Slept'
       },
       {
-        date: "2023-08-25T12:00:00.000Z",
+        date: '2023-08-25T12:00:00.000Z',
         activity: 'Sunbathed'
-      },
+      }
     ],
     activityLog: [
       {
-        date: "2023-08-25T10:00:00.000Z",
+        date: '2023-08-25T10:00:00.000Z',
         minutesActive: 34
       },
       {
-        date: "2023-08-25T11:00:00.000Z",
+        date: '2023-08-25T11:00:00.000Z',
         minutesActive: 40
       },
       {
-        date: "2023-08-25T12:00:00.000Z",
+        date: '2023-08-25T12:00:00.000Z',
         minutesActive: 20
       }
     ],
     eatenBirds: [
       {
-        date: "2023-08-25T10:00:00.000Z",
+        date: '2023-08-25T10:00:00.000Z',
         count: 1
       },
       {
-        date: "2023-08-25T12:00:00.000Z",
+        date: '2023-08-25T12:00:00.000Z',
         count: 1
       }
     ]
@@ -99,39 +99,39 @@ export const catsData: Cat[] = [
     color: 'Seal Lynx',
     breed: 'Ragdoll',
     furType: 'Long Hair',
-    photo: 'https://cdn2.thecatapi.com/images/oGefY4YoG.jpg',
+    photo: 'https://cdn2.thecatapi.com/images/eF3HSMIB_.jpg',
     status: 'Sunbathing',
     activities: [
       {
-        date: "2023-08-25T10:00:00.000Z",
+        date: '2023-08-25T10:00:00.000Z',
         activity: 'Ate'
       },
       {
-        date: "2023-08-25T11:00:00.000Z",
+        date: '2023-08-25T11:00:00.000Z',
         activity: 'Slept'
       },
       {
-        date: "2023-08-25T12:00:00.000Z",
+        date: '2023-08-25T12:00:00.000Z',
         activity: 'Sunbathed'
-      },
+      }
     ],
     activityLog: [
       {
-        date: "2023-08-25T10:00:00.000Z",
+        date: '2023-08-25T10:00:00.000Z',
         minutesActive: 34
       },
       {
-        date: "2023-08-25T11:00:00.000Z",
+        date: '2023-08-25T11:00:00.000Z',
         minutesActive: 40
       },
       {
-        date: "2023-08-25T12:00:00.000Z",
+        date: '2023-08-25T12:00:00.000Z',
         minutesActive: 20
       }
     ],
     eatenBirds: [
       {
-        date: "2023-08-25T10:00:00.000Z",
+        date: '2023-08-25T10:00:00.000Z',
         count: 1
       }
     ]

@@ -7,19 +7,19 @@ export interface Cat {
   photo: string
   status: CatStatus
   activities: {
-    date: string
+    date: Date | string
     activity: CatActivity
   }[]
   activityLog: ActivityEntry[]
   eatenBirds: {
-    date: string
+    date: Date | string
     count: number
   }[]
 }
 
 interface ActivityEntry {
-  date: string;
-  minutesActive: number;
+  date: Date | string
+  minutesActive: number
 }
 
 type FurType = 'Short Hair' | 'Long Hair' | 'Semi-Long Hair' | 'Curly Hair' | 'Hairless'

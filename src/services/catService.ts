@@ -1,10 +1,10 @@
-import { catsData } from './../data/cats'
+import type { Cat } from '@/types/Cat'
+import { catsData } from '../data/catsData'
 
-export function fetchCats() {
+export function fetchCats(): Promise<Cat[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const mockCats = [...catsData]
-      resolve(mockCats)
+      resolve(catsData)
     }, 1500)
   })
 }
