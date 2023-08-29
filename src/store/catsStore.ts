@@ -5,8 +5,8 @@ import type { Cat } from '@/types/Cat'
 import { fetchCatById, fetchCats } from '@/services/catService'
 
 export const useCatsStore = defineStore('catsStore', () => {
-  const isFetchingCats = ref(false)
-  const fetchingCatsError = ref<any | null>(null)
+  const isFetchingCatsData = ref(false)
+  const fetchingCatsDataError = ref<any | null>(null)
   const cats = ref<Cat[]>([])
   const cat = ref<Cat | null>(null)
 
@@ -16,37 +16,37 @@ export const useCatsStore = defineStore('catsStore', () => {
 
   const getCats = async () => {
     try {
-      isFetchingCats.value = true
+      isFetchingCatsData.value = true
       const data = await fetchCats()
       cats.value = data
-      isFetchingCats.value = false
+      isFetchingCatsData.value = false
     } catch (error) {
       if (error) {
-        fetchingCatsError.value = error
+        fetchingCatsDataError.value = error
       }
-      isFetchingCats.value = false
+      isFetchingCatsData.value = false
     }
   }
 
   const getCatById = async (id: string) => {
     try {
-      isFetchingCats.value = true
+      isFetchingCatsData.value = true
       const data = await fetchCatById(id)
       cat.value = data
-      isFetchingCats.value = false
+      isFetchingCatsData.value = false
     } catch (error) {
       if (error) {
-        fetchingCatsError.value = error
+        fetchingCatsDataError.value = error
       }
-      isFetchingCats.value = false
+      isFetchingCatsData.value = false
     }
   }
 
   return {
     cat,
     cats,
-    fetchingCatsError,
-    isFetchingCats,
+    fetchingCatsDataError,
+    isFetchingCatsData,
     getCats,
     getCatById,
     resetCatState

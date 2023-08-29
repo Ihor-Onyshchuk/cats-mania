@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import LoadingPortal from './components/LoadingPortal.vue'
 import { useCatsStore } from './store/catsStore'
 
 const catsStore = useCatsStore()
@@ -19,6 +20,6 @@ onMounted(() => {
   </header>
 
   <RouterView />
-  <div v-show="catsStore.isFetchingCats">Loading...</div>
+  <LoadingPortal />
   <div v-show="catsStore.fetchingCatsError">Error</div>
 </template>
