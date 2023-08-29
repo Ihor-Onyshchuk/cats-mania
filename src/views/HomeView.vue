@@ -1,5 +1,5 @@
-<script setup>
-import CatsList from '@/components/CatsList.vue'
+<script setup lang="ts">
+import CatsList from '../components/CatsList.vue'
 </script>
 
 <template>

@@ -8,3 +8,12 @@ export function fetchCats(): Promise<Cat[]> {
     }, 1500)
   })
 }
+
+export function fetchCatById(id: string): Promise<Cat | null> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const cat = catsData.find((cat) => cat.id === id)
+      resolve(cat || null)
+    }, 1500)
+  })
+}

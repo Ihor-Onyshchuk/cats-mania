@@ -2,7 +2,7 @@ import type { Cat } from '@/types/Cat'
 
 export const catsData: Cat[] = [
   {
-    id: 1,
+    id: '1',
     name: 'Boris',
     color: 'grey tabby',
     breed: 'American Shorthair',
@@ -26,27 +26,27 @@ export const catsData: Cat[] = [
     activityLog: [
       {
         date: '2023-08-25T10:00:00.000Z',
-        minutesActive: 34
+        minutesActive: 14
       },
       {
         date: '2023-08-25T11:00:00.000Z',
-        minutesActive: 40
-      },
-      {
-        date: '2023-08-25T12:00:00.000Z',
-        minutesActive: 20
+        minutesActive: 8
       }
     ],
     eatenBirds: [
       {
         date: '2023-08-25T10:00:00.000Z',
         count: 2
+      },
+      {
+        date: '2023-08-25T18:00:00.000Z',
+        count: 3
       }
     ]
   },
 
   {
-    id: 2,
+    id: '2',
     name: 'Snow',
     color: 'wite',
     breed: 'Persian',
@@ -84,17 +84,21 @@ export const catsData: Cat[] = [
     eatenBirds: [
       {
         date: '2023-08-25T10:00:00.000Z',
+        count: 3
+      },
+      {
+        date: '2023-08-25T19:00:00.000Z',
         count: 1
       },
       {
         date: '2023-08-25T12:00:00.000Z',
-        count: 1
+        count: 2
       }
     ]
   },
 
   {
-    id: 3,
+    id: '3',
     name: 'Jelly',
     color: 'Seal Lynx',
     breed: 'Ragdoll',
@@ -118,21 +122,37 @@ export const catsData: Cat[] = [
     activityLog: [
       {
         date: '2023-08-25T10:00:00.000Z',
-        minutesActive: 34
+        minutesActive: 50
       },
       {
         date: '2023-08-25T11:00:00.000Z',
-        minutesActive: 40
+        minutesActive: 10
       },
       {
         date: '2023-08-25T12:00:00.000Z',
-        minutesActive: 20
+        minutesActive: 25
+      },
+      {
+        date: '2023-08-25T18:00:00.000Z',
+        minutesActive: 45
       }
     ],
     eatenBirds: [
       {
         date: '2023-08-25T10:00:00.000Z',
         count: 1
+      },
+      {
+        date: '2023-08-25T16:00:00.000Z',
+        count: 2
+      },
+      {
+        date: '2023-08-25T15:00:00.000Z',
+        count: 0
+      },
+      {
+        date: '2023-08-25T22:00:00.000Z',
+        count: 3
       }
     ]
   }
