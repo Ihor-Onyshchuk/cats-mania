@@ -1,5 +1,11 @@
+<script setup lang="ts">
+import { useGlobalStore } from '../store/globalStore'
+
+const globalStore = useGlobalStore()
+</script>
+
 <template>
-  <div class="loading-overlay">
+  <div v-if="globalStore.isLoading" class="loading-overlay">
     <div class="loading-content">
       <div class="loading-spinner"></div>
       <p>Loading...</p>

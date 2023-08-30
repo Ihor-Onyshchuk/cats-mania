@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import LoadingPortal from './components/LoadingPortal.vue'
+import GlobalError from './components/GlobalError.vue'
 import { useCatsStore } from './store/catsStore'
 
 const catsStore = useCatsStore()
@@ -21,5 +22,5 @@ onMounted(() => {
 
   <RouterView />
   <LoadingPortal />
-  <div v-show="catsStore.fetchingCatsError">Error</div>
+  <GlobalError />
 </template>

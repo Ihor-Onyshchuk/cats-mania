@@ -1,3 +1,4 @@
+import { useGlobalStore } from './globalStore'
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
@@ -5,50 +6,43 @@ import type { Cat } from '@/types/Cat'
 import { fetchCatById, fetchCats } from '@/services/catService'
 
 export const useCatsStore = defineStore('catsStore', () => {
+  const globalStore = useGlobalStore()
+
   const isFetchingCatsData = ref(false)
-  const fetchingCatsDataError = ref<any | null>(null)
   const cats = ref<Cat[]>([])
   const cat = ref<Cat | null>(null)
 
-  const resetCatState = () => {
-    cat.value = null
-  }
-
-  const getCats = async () => {
+  const fetchCatData = async (fetchFunction: () => Promise<Cat | Cat[] | null>) => {
     try {
-      isFetchingCatsData.value = true
-      const data = await fetchCats()
-      cats.value = data
-      isFetchingCatsData.value = false
-    } catch (error) {
-      if (error) {
-        fetchingCatsDataError.value = error
+      globalStore.setIsLoading(true)
+      const data = await fetchFunction()
+      if (Array.isArray(data)) {
+        cats.value = data
+      } else {
+        cat.value = data
       }
-      isFetchingCatsData.value = false
+    } catch (error: any) {
+      const errorMessage = error?.message || 'Something went wrong!'
+      globalStore.setError(errorMessage)
+    } finally {
+      globalStore.setIsLoading(false)
     }
   }
 
-  const getCatById = async (id: string) => {
-    try {
-      isFetchingCatsData.value = true
-      const data = await fetchCatById(id)
-      cat.value = data
-      isFetchingCatsData.value = false
-    } catch (error) {
-      if (error) {
-        fetchingCatsDataError.value = error
-      }
-      isFetchingCatsData.value = false
-    }
+  const getCats = () => {
+    fetchCatData(fetchCats)
+  }
+
+  const getCatById = (id: string) => {
+    fetchCatData(() => fetchCatById(id))
   }
 
   return {
     cat,
     cats,
-    fetchingCatsDataError,
     isFetchingCatsData,
     getCats,
     getCatById,
-    resetCatState
+    resetCatState: () => (cat.value = null)
   }
 })

@@ -75,7 +75,7 @@ onUnmounted(() => {
         <Chart :type="'bar'" :data="birdChartData" :options="birdChartOptions" />
       </div>
       <div class="chart">
-        <h3>Hourly Activity Chart</h3>
+        <h3>Hourly Activity</h3>
         <Chart :type="'line'" :data="activityChartData" :options="activityChartOptions" />
       </div>
     </div>
@@ -88,9 +88,6 @@ onUnmounted(() => {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #f7f7f7;
 }
 
 .left-section,
