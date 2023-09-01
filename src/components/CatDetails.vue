@@ -25,11 +25,11 @@ const birdChartData = computed(() => ({
 }))
 
 const activityChartData = computed(() => ({
-  labels: cat.value?.activityLog.map((entry) => formatDateToHMM(entry.date)),
+  labels: cat.value?.activities.map((entry) => formatDateToHMM(entry.date)),
   datasets: [
     {
       label: 'Minutes active',
-      data: cat.value?.activityLog.map((entry) => entry.minutesActive)
+      data: cat.value?.activities.map((entry) => entry.minutesActive)
     }
   ]
 }))
@@ -64,7 +64,7 @@ onUnmounted(() => {
         <h3>Activity History</h3>
         <ul class="activity-list">
           <li v-for="(activity, index) in cat.activities" :key="index">
-            {{ formatDateToHMM(activity.date) }} - {{ activity.activity }}
+            {{ formatDateToHMM(activity.date) }} - {{ activity.activityType }}
           </li>
         </ul>
       </div>

@@ -3,12 +3,11 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 import type { Cat } from '@/types/Cat'
-import { fetchCatById, fetchCats } from '@/services/catService'
+import { addNewCat, fetchCatById, fetchCats } from '@/services/catService'
 
 export const useCatsStore = defineStore('catsStore', () => {
   const globalStore = useGlobalStore()
 
-  const isFetchingCatsData = ref(false)
   const cats = ref<Cat[]>([])
   const cat = ref<Cat | null>(null)
 
@@ -22,8 +21,7 @@ export const useCatsStore = defineStore('catsStore', () => {
         cat.value = data
       }
     } catch (error: any) {
-      const errorMessage = error?.message || 'Something went wrong!'
-      globalStore.setError(errorMessage)
+      globalStore.setError(error?.message || 'Something went wrong!')
     } finally {
       globalStore.setIsLoading(false)
     }
@@ -37,10 +35,21 @@ export const useCatsStore = defineStore('catsStore', () => {
     fetchCatData(() => fetchCatById(id))
   }
 
+  const addCat = async (cat: Cat) => {
+    try {
+      globalStore.setIsLoading(true)
+      await addNewCat(cat)
+    } catch (error: any) {
+      globalStore.setError(error?.message || 'Something went wrong!')
+    } finally {
+      globalStore.setIsLoading(false)
+    }
+  }
+
   return {
     cat,
     cats,
-    isFetchingCatsData,
+    addCat,
     getCats,
     getCatById,
     resetCatState: () => (cat.value = null)

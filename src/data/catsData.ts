@@ -12,24 +12,12 @@ export const catsData: Cat[] = [
     activities: [
       {
         date: '2023-08-25T10:00:00.000Z',
-        activity: 'Ate'
-      },
-      {
-        date: '2023-08-25T11:00:00.000Z',
-        activity: 'Slept'
-      },
-      {
-        date: '2023-08-25T12:00:00.000Z',
-        activity: 'Sunbathed'
-      }
-    ],
-    activityLog: [
-      {
-        date: '2023-08-25T10:00:00.000Z',
+        activityType: 'Eating',
         minutesActive: 14
       },
       {
         date: '2023-08-25T11:00:00.000Z',
+        activityType: 'Sleeping',
         minutesActive: 8
       }
     ],
@@ -48,7 +36,7 @@ export const catsData: Cat[] = [
   {
     id: '2',
     name: 'Snow',
-    color: 'wite',
+    color: 'white',
     breed: 'Persian',
     furType: 'Long Hair',
     photo: 'https://cdn2.thecatapi.com/images/RhBsBQg6y.jpg',
@@ -56,28 +44,17 @@ export const catsData: Cat[] = [
     activities: [
       {
         date: '2023-08-25T10:00:00.000Z',
-        activity: 'Ate'
-      },
-      {
-        date: '2023-08-25T11:00:00.000Z',
-        activity: 'Slept'
-      },
-      {
-        date: '2023-08-25T12:00:00.000Z',
-        activity: 'Sunbathed'
-      }
-    ],
-    activityLog: [
-      {
-        date: '2023-08-25T10:00:00.000Z',
+        activityType: 'Eating',
         minutesActive: 34
       },
       {
         date: '2023-08-25T11:00:00.000Z',
+        activityType: 'Sleeping',
         minutesActive: 40
       },
       {
         date: '2023-08-25T12:00:00.000Z',
+        activityType: 'Sunbathing',
         minutesActive: 20
       }
     ],
@@ -108,32 +85,22 @@ export const catsData: Cat[] = [
     activities: [
       {
         date: '2023-08-25T10:00:00.000Z',
-        activity: 'Ate'
-      },
-      {
-        date: '2023-08-25T11:00:00.000Z',
-        activity: 'Slept'
-      },
-      {
-        date: '2023-08-25T12:00:00.000Z',
-        activity: 'Sunbathed'
-      }
-    ],
-    activityLog: [
-      {
-        date: '2023-08-25T10:00:00.000Z',
+        activityType: 'Eating',
         minutesActive: 50
       },
       {
         date: '2023-08-25T11:00:00.000Z',
+        activityType: 'Sleeping',
         minutesActive: 10
       },
       {
         date: '2023-08-25T12:00:00.000Z',
+        activityType: 'Sunbathing',
         minutesActive: 25
       },
       {
         date: '2023-08-25T18:00:00.000Z',
+        activityType: 'Sunbathing',
         minutesActive: 45
       }
     ],

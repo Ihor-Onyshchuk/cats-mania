@@ -6,11 +6,7 @@ export interface Cat {
   furType: FurType
   photo: string
   status: CatStatus
-  activities: {
-    date: Date | string
-    activity: CatActivity
-  }[]
-  activityLog: ActivityEntry[]
+  activities: ActivityEntry[]
   eatenBirds: {
     date: Date | string
     count: number
@@ -19,9 +15,10 @@ export interface Cat {
 
 interface ActivityEntry {
   date: Date | string
+  activityType: CatStatus | string
   minutesActive: number
 }
 
-type FurType = 'Short Hair' | 'Long Hair' | 'Semi-Long Hair' | 'Curly Hair' | 'Hairless'
-type CatStatus = 'Awake' | 'Sleeping' | 'Eating' | 'Playing' | 'Sunbathing'
-type CatActivity = 'Woke up' | 'Slept' | 'Ate' | 'Played' | 'Sunbathed'
+export type FurType = 'Short Hair' | 'Long Hair' | 'Semi-Long Hair' | 'Curly Hair' | 'Hairless'
+export type CatStatus = 'Awake' | 'Sleeping' | 'Eating' | 'Playing' | 'Sunbathing'
+// export type CatActivity = 'Woke up' | 'Slept' | 'Ate' | 'Played' | 'Sunbathed'

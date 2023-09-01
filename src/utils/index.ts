@@ -15,3 +15,7 @@ export function formatDateToHMM(date: Date | number | string): string {
 
   return new Intl.DateTimeFormat('default', options).format(new Date(date))
 }
+
+export function generateUniqueId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2)
+}
