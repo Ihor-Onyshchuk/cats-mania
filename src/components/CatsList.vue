@@ -28,5 +28,6 @@ function handleCatCardClick(id: string) {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  padding: 20px 0;
 }
 </style>

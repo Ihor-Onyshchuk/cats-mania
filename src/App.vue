@@ -3,6 +3,7 @@ import { onMounted } from 'vue'
 import LoadingPortal from './components/LoadingPortal.vue'
 import GlobalError from './components/GlobalError.vue'
 import { useCatsStore } from './store/catsStore'
+import AppHeader from './components/AppHeader.vue'
 
 const catsStore = useCatsStore()
 
@@ -12,15 +13,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <header>
-    <div>
-      <nav>
-        <!-- <RouterLink to="/">Home</RouterLink> -->
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <AppHeader />
+  <main>
+    <RouterView />
+  </main>
   <LoadingPortal />
   <GlobalError />
 </template>

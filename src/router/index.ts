@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
+import CatsList from '@/components/CatsList.vue'
 import AddCat from '@/components/AddCat.vue'
 import CatDetails from '@/components/CatDetails.vue'
 
@@ -9,7 +9,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: CatsList
     },
     {
       path: '/cats/:id',
