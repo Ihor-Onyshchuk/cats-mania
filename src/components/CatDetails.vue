@@ -3,14 +3,19 @@ import { computed, onMounted, onUnmounted } from 'vue'
 import Chart from 'primevue/chart'
 import Tag from 'primevue/tag'
 import { useRoute } from 'vue-router'
+import InlineMessage from 'primevue/inlinemessage'
+import Accordion from 'primevue/accordion'
+import AccordionTab from 'primevue/accordiontab'
 
 import { Cat } from '../types/Cat'
 import { useCatsStore } from '../store/catsStore'
-import { formatDateToHMM } from '../utils/index'
+import { formatDateToHMM, checkCatOwner } from '../utils/index'
+import { useUserStore } from '../store/userStore'
 
 const route = useRoute()
 
 const catsStore = useCatsStore()
+const userStore = useUserStore()
 
 const cat = computed<Cat | null>(() => catsStore.cat)
 
@@ -52,21 +57,30 @@ onUnmounted(() => {
         <div class="cat-photo">
           <img :src="cat.photo" alt="Cat Photo" />
         </div>
-        <div class="cat-info">
-          <h2>{{ cat.name }}</h2>
-          <p><strong>Color:</strong> {{ cat.color }}</p>
-          <p><strong>Breed:</strong> {{ cat.breed }}</p>
-          <p><strong>Fur Type:</strong> {{ cat.furType }}</p>
-          <p><strong>Status:</strong> <Tag severity="success" :value="cat.status" /></p>
+        <div class="cat-info-container">
+          <div class="cat-info">
+            <h2>{{ cat.name }}</h2>
+            <p><strong>Color:</strong> {{ cat.color }}</p>
+            <p><strong>Breed:</strong> {{ cat.breed }}</p>
+            <p><strong>Fur Type:</strong> {{ cat.furType }}</p>
+          </div>
+          <InlineMessage severity="info" class="cat-owner">{{
+            checkCatOwner(cat.ownerId, userStore.user?.id)
+          }}</InlineMessage>
         </div>
       </div>
       <div class="history">
-        <h3>Activity History</h3>
-        <ul class="activity-list">
-          <li v-for="(activity, index) in cat.activities" :key="index">
-            {{ formatDateToHMM(activity.date) }} - {{ activity.activityType }}
-          </li>
-        </ul>
+        <h3>Activity</h3>
+        <Accordion activeIndex="0">
+          <AccordionTab header="Show Activity History">
+            <p class="mb-2">Status: <Tag severity="success" :value="cat.status" /></p>
+            <ul class="activity-list">
+              <li v-for="(activity, index) in cat.activities" :key="index">
+                {{ formatDateToHMM(activity.date) }} - {{ activity.activityType }}
+              </li>
+            </ul>
+          </AccordionTab>
+        </Accordion>
       </div>
     </div>
     <div class="right-section">
@@ -116,6 +130,17 @@ onUnmounted(() => {
 .cat-info h2 {
   margin: 0;
   font-size: 1.5rem;
+}
+
+.cat-info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cat-owner {
+  align-self: end;
+  padding: 0.5rem 0.5rem;
 }
 
 .history {

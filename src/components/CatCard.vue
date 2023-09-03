@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import { defineProps, PropType } from 'vue'
+import { defineProps } from 'vue'
 import { Cat } from '../types/Cat'
 
-const props = defineProps({
-  cat: {
-    type: Object as PropType<Cat>,
-    require: true
-  }
-})
+defineProps<{
+  cat: Cat
+  catOwner?: string
+}>()
 </script>
 
 <template>
@@ -15,8 +13,8 @@ const props = defineProps({
     <img :src="cat.photo" alt="Cat Photo" class="cat-photo" />
     <div class="cat-info">
       <h3>{{ cat.name }}</h3>
-      <p>Breed: {{ cat.breed }}</p>
-      <p>Color: {{ cat.color }}</p>
+      <p>{{ cat.color }}</p>
+      <p>{{ cat.breed }}</p>
     </div>
   </div>
 </template>

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import LoadingPortal from './components/LoadingPortal.vue'
-import GlobalError from './components/GlobalError.vue'
-import { useCatsStore } from './store/catsStore'
 import AppHeader from './components/AppHeader.vue'
+import LoadingPortal from './components/LoadingPortal.vue'
+import NotificationMessage from './components/NotificationMessage.vue'
+import { useCatsStore } from './store/catsStore'
 
 const catsStore = useCatsStore()
 
@@ -18,5 +18,5 @@ onMounted(() => {
     <RouterView />
   </main>
   <LoadingPortal />
-  <GlobalError />
+  <NotificationMessage />
 </template>

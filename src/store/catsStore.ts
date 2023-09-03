@@ -1,7 +1,7 @@
-import { useGlobalStore } from './globalStore'
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
+import { useGlobalStore } from './globalStore'
 import type { Cat } from '@/types/Cat'
 import { addNewCat, fetchCatById, fetchCats } from '@/services/catService'
 
@@ -15,13 +15,18 @@ export const useCatsStore = defineStore('catsStore', () => {
     try {
       globalStore.setIsLoading(true)
       const data = await fetchFunction()
+
+      if (!data) {
+        throw new Error('Cats data is missing or invalid.')
+      }
+
       if (Array.isArray(data)) {
         cats.value = data
       } else {
         cat.value = data
       }
     } catch (error: any) {
-      globalStore.setError(error?.message || 'Something went wrong!')
+      globalStore.setNotification(error?.message || 'Something went wrong!', 'error')
     } finally {
       globalStore.setIsLoading(false)
     }
@@ -39,8 +44,10 @@ export const useCatsStore = defineStore('catsStore', () => {
     try {
       globalStore.setIsLoading(true)
       await addNewCat(cat)
+      cats.value.push(cat)
+      globalStore.setNotification('Success', 'success')
     } catch (error: any) {
-      globalStore.setError(error?.message || 'Something went wrong!')
+      globalStore.setNotification(error?.message || 'Something went wrong!', 'error')
     } finally {
       globalStore.setIsLoading(false)
     }

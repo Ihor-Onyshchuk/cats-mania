@@ -10,6 +10,7 @@ import Calendar from 'primevue/calendar'
 import { useCatsStore } from '../store/catsStore'
 import { Cat, CatStatus, FurType } from '../types/Cat'
 import { generateUniqueId } from '../utils'
+import { useUserStore } from '../store/userStore'
 
 type EatenBirdsItem = { date: Date | string; count: number }
 type ActivitiesItem = {
@@ -29,7 +30,7 @@ const eatenBirdsItem: EatenBirdsItem = {
   count: 0
 }
 
-const defaultCatValues: Omit<Cat, 'id'> = {
+const defaultCatValues: Omit<Cat, 'id' | 'ownerId'> = {
   name: '',
   color: '',
   breed: '',
@@ -50,8 +51,9 @@ const furTypeOptions: FurType[] = [
 const catStatusOptions: CatStatus[] = ['Awake', 'Sleeping', 'Eating', 'Playing', 'Sunbathing']
 
 const catsStore = useCatsStore()
+const userStore = useUserStore()
 
-const newCat = ref<Omit<Cat, 'id'>>(structuredClone(defaultCatValues))
+const newCat = ref<Omit<Cat, 'id' | 'ownerId'>>(structuredClone(defaultCatValues))
 const fileInputRef = ref<FileUploadUploadEvent | null>(null)
 
 const isFormValid = computed<boolean>(() => {
@@ -67,7 +69,11 @@ const isFormValid = computed<boolean>(() => {
 
 const addCat = () => {
   if (isFormValid.value) {
-    const catWithId: Cat = { ...newCat.value, id: generateUniqueId() }
+    const catWithId: Cat = {
+      ...newCat.value,
+      id: generateUniqueId(),
+      ownerId: userStore.user.id
+    }
     catsStore.addCat(catWithId)
     resetForm()
   }

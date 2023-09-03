@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { useCatsStore } from '../store/catsStore'
+
 import CatCard from './CatCard.vue'
+import { useCatsStore } from '../store/catsStore'
+import { useUserStore } from '../store/userStore'
+import { checkCatOwner } from '../utils/index'
 
 const router = useRouter()
 
 const catsStore = useCatsStore()
+const userStore = useUserStore()
 
 function handleCatCardClick(id: string) {
   router.push(`/cats/${id}`)
@@ -18,6 +22,7 @@ function handleCatCardClick(id: string) {
       v-for="cat in catsStore.cats"
       :key="cat.id"
       :cat="cat"
+      :catOwner="checkCatOwner(cat.ownerId, userStore.user?.id)"
       @click="handleCatCardClick(cat.id)"
     />
   </div>

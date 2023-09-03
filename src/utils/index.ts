@@ -19,3 +19,7 @@ export function formatDateToHMM(date: Date | number | string): string {
 export function generateUniqueId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2)
 }
+
+export function checkCatOwner(catOwnerId: string, userId: string): string {
+  return catOwnerId === userId ? 'Your cat :)' : 'Not your cat :('
+}

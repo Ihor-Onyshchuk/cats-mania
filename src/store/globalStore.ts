@@ -3,16 +3,14 @@ import { defineStore } from 'pinia'
 
 export const useGlobalStore = defineStore('globalStore', () => {
   const isLoading = ref(false)
-  const errorMessage = ref('')
+  const notificationMessage = ref({ message: '', severity: 'error', life: 3000 })
 
-  const setError = (message: string) => {
-    console.log('setError', message)
-    errorMessage.value = message
+  const setNotification = (message: string, severity: string = 'error', life: number = 3000) => {
+    notificationMessage.value = { message, severity, life }
   }
 
-  const clearError = () => {
-    console.log('clear error')
-    errorMessage.value = ''
+  const clearNotification = () => {
+    notificationMessage.value = { message: '', severity: 'error', life: 3000 }
   }
 
   const setIsLoading = (value: boolean) => {
@@ -21,9 +19,9 @@ export const useGlobalStore = defineStore('globalStore', () => {
 
   return {
     isLoading,
-    errorMessage,
-    setError,
-    clearError,
+    notificationMessage,
+    setNotification,
+    clearNotification,
     setIsLoading
   }
 })

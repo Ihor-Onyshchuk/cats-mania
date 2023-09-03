@@ -1,5 +1,6 @@
 export interface Cat {
   id: string
+  ownerId: string
   name: string
   color: string
   breed: string
@@ -21,4 +22,3 @@ interface ActivityEntry {
 
 export type FurType = 'Short Hair' | 'Long Hair' | 'Semi-Long Hair' | 'Curly Hair' | 'Hairless'
 export type CatStatus = 'Awake' | 'Sleeping' | 'Eating' | 'Playing' | 'Sunbathing'
-// export type CatActivity = 'Woke up' | 'Slept' | 'Ate' | 'Played' | 'Sunbathed'

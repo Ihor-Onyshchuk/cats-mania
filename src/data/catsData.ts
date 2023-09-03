@@ -3,6 +3,7 @@ import type { Cat } from '@/types/Cat'
 export const catsData: Cat[] = [
   {
     id: '1',
+    ownerId: '11',
     name: 'Boris',
     color: 'grey tabby',
     breed: 'American Shorthair',
@@ -35,6 +36,7 @@ export const catsData: Cat[] = [
 
   {
     id: '2',
+    ownerId: '22',
     name: 'Snow',
     color: 'white',
     breed: 'Persian',
@@ -76,6 +78,7 @@ export const catsData: Cat[] = [
 
   {
     id: '3',
+    ownerId: '22',
     name: 'Jelly',
     color: 'Seal Lynx',
     breed: 'Ragdoll',
@@ -99,7 +102,7 @@ export const catsData: Cat[] = [
         minutesActive: 25
       },
       {
-        date: '2023-08-25T18:00:00.000Z',
+        date: '2023-08-25T15:00:00.000Z',
         activityType: 'Sunbathing',
         minutesActive: 45
       }
