@@ -22,7 +22,7 @@ function handleCatCardClick(id: string) {
       v-for="cat in catsStore.cats"
       :key="cat.id"
       :cat="cat"
-      :catOwner="checkCatOwner(cat.ownerId, userStore.user?.id)"
+      :catOwner="checkCatOwner(cat.ownerId, userStore.user?.id || '')"
       @click="handleCatCardClick(cat.id)"
     />
   </div>

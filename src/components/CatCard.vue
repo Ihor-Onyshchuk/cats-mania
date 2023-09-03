@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
-import { Cat } from '../types/Cat'
+import type { Cat } from '../types/Cat'
 
 defineProps<{
   cat: Cat

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AuthForm from '../components/AuthForm.vue'
 import { useUserStore } from '../store/userStore'
-import { User } from '../types/User'
+import type { User } from '../types/User'
 
 const userStore = useUserStore()
 

@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted } from 'vue'
-import Chart from 'primevue/chart'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
+import Chart, { type ChartProps } from 'primevue/chart'
 import Tag from 'primevue/tag'
+import type { ChartOptions, CoreChartOptions } from 'chart.js'
 import { useRoute } from 'vue-router'
 import InlineMessage from 'primevue/inlinemessage'
 import Accordion from 'primevue/accordion'
 import AccordionTab from 'primevue/accordiontab'
 
-import { Cat } from '../types/Cat'
+import type { Cat } from '../types/Cat'
 import { useCatsStore } from '../store/catsStore'
 import { formatDateToHMM, checkCatOwner } from '../utils/index'
 import { useUserStore } from '../store/userStore'
@@ -65,13 +66,13 @@ onUnmounted(() => {
             <p><strong>Fur Type:</strong> {{ cat.furType }}</p>
           </div>
           <InlineMessage severity="info" class="cat-owner">{{
-            checkCatOwner(cat.ownerId, userStore.user?.id)
+            checkCatOwner(cat.ownerId, userStore.user?.id || '')
           }}</InlineMessage>
         </div>
       </div>
       <div class="history">
         <h3>Activity</h3>
-        <Accordion activeIndex="0">
+        <Accordion>
           <AccordionTab header="Show Activity History">
             <p class="mb-2">Status: <Tag severity="success" :value="cat.status" /></p>
             <ul class="activity-list">
@@ -86,11 +87,11 @@ onUnmounted(() => {
     <div class="right-section">
       <div class="chart">
         <h3>Number of Birds Eaten per Day</h3>
-        <Chart :type="'bar'" :data="birdChartData" :options="birdChartOptions" />
+        <Chart :type="'bar'" :data="birdChartData" />
       </div>
       <div class="chart">
         <h3>Hourly Activity</h3>
-        <Chart :type="'line'" :data="activityChartData" :options="activityChartOptions" />
+        <Chart :type="'line'" :data="activityChartData" />
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@
 import AuthForm from '../components/AuthForm.vue'
 import { useUserStore } from '../store/userStore'
 import { generateUniqueId } from '../utils'
-import { User } from '../types/User'
+import type { User } from '../types/User'
 
 const userStore = useUserStore()
 

@@ -23,7 +23,7 @@ const addNewCat = () => {
     <div class="user-section">
       <div v-if="userStore.isAuth" class="user-info">
         <span class="user-icon pi pi-user"></span>
-        <span class="username">{{ userStore.user.username || 'User name' }}</span>
+        <span class="username">{{ userStore.user?.username || 'User name' }}</span>
         <template v-if="userStore.isAuth">
           <Divider layout="vertical" />
           <Button

@@ -2,13 +2,13 @@
 import { computed, ref } from 'vue'
 import InputText from 'primevue/inputtext'
 import Dropdown from 'primevue/dropdown'
-import FileUpload, { FileUploadUploadEvent } from 'primevue/fileupload'
+import FileUpload, { type FileUploadUploadEvent } from 'primevue/fileupload'
 import InputNumber from 'primevue/inputnumber'
 import Button from 'primevue/button'
 import Calendar from 'primevue/calendar'
 
 import { useCatsStore } from '../store/catsStore'
-import { Cat, CatStatus, FurType } from '../types/Cat'
+import type { Cat, CatStatus, FurType } from '../types/Cat'
 import { generateUniqueId } from '../utils'
 import { useUserStore } from '../store/userStore'
 
@@ -57,9 +57,9 @@ const newCat = ref<Omit<Cat, 'id' | 'ownerId'>>(structuredClone(defaultCatValues
 const fileInputRef = ref<FileUploadUploadEvent | null>(null)
 
 const isFormValid = computed<boolean>(() => {
-  const isValidActivitiesItems = validateActivityItem('activities')
-  const isValidEatenBirds = validateActivityItem('eatenBirds')
-  const isValidRequiredFormFields =
+  const isValidActivitiesItems: boolean = validateActivityItem('activities')
+  const isValidEatenBirds: boolean = validateActivityItem('eatenBirds')
+  const isValidRequiredFormFields: boolean =
     Boolean(newCat.value.name.trim()) &&
     Boolean(newCat.value.color.trim()) &&
     Boolean(newCat.value.breed.trim())
@@ -68,7 +68,7 @@ const isFormValid = computed<boolean>(() => {
 })
 
 const addCat = () => {
-  if (isFormValid.value) {
+  if (isFormValid.value && userStore.user?.id) {
     const catWithId: Cat = {
       ...newCat.value,
       id: generateUniqueId(),
@@ -80,11 +80,20 @@ const addCat = () => {
 }
 
 const addActivityItem = (key: string, item: EatenBirdsItem | ActivitiesItem) => {
-  newCat.value[key].push(structuredClone(item))
+  if (newCat.value[key as keyof typeof newCat.value]) {
+    ;(newCat.value[key as keyof typeof newCat.value] as (EatenBirdsItem | ActivitiesItem)[]).push(
+      structuredClone(item)
+    )
+  }
 }
 
-const validateActivityItem = (key: string) => {
-  const items: Array<ActivitiesItem | EatenBirdsItem> = newCat.value[key]
+const validateActivityItem = (key: string): boolean => {
+  let items: Array<ActivitiesItem | EatenBirdsItem> = []
+
+  if (newCat.value[key as keyof typeof newCat.value]) {
+    items = newCat.value[key as keyof typeof newCat.value] as (EatenBirdsItem | ActivitiesItem)[]
+  }
+
   const lastItem = items[items.length - 1]
 
   if (!items.length) {
@@ -93,28 +102,37 @@ const validateActivityItem = (key: string) => {
 
   if (key === 'activities' && 'activityType' in lastItem) {
     const activityItem = lastItem as ActivitiesItem
-    return activityItem.date && activityItem.activityType && activityItem.minutesActive > 0
+    return (
+      Boolean(activityItem.date) &&
+      Boolean(activityItem.activityType) &&
+      Boolean(activityItem.minutesActive > 0)
+    )
   } else if (key === 'eatenBirds' && 'count' in lastItem) {
     const eatenBirdsItem = lastItem as EatenBirdsItem
-    return eatenBirdsItem.date && eatenBirdsItem.count > 0
+    return Boolean(eatenBirdsItem.date) && Boolean(eatenBirdsItem.count > 0)
   }
 
   return false
 }
 
 const removeActivityItem = (key: string, index: number) => {
-  newCat.value[key].splice(index, 1)
+  if (newCat.value[key as keyof typeof newCat.value]) {
+    ;(newCat.value[key as keyof typeof newCat.value] as (EatenBirdsItem | ActivitiesItem)[]).splice(
+      index,
+      1
+    )
+  }
 }
 
 const resetForm = () => {
   newCat.value = structuredClone(defaultCatValues)
   if (fileInputRef.value) {
-    fileInputRef.value.files = null
+    fileInputRef.value.files = []
   }
 }
 
-const handlePhotoUpload = (event) => {
-  const file = event.files[0]
+const handlePhotoUpload = (event: FileUploadUploadEvent) => {
+  const file = (event.files as File[])[0]
   if (file) {
     const reader = new FileReader()
     reader.onload = () => {
@@ -155,7 +173,6 @@ const handlePhotoUpload = (event) => {
       </div>
 
       <div class="form-group">
-        <img :src="previewImg" />
         <label for="photo">Photo:</label>
         <FileUpload
           id="photo"
