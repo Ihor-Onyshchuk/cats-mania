@@ -25,7 +25,8 @@ const addNewCat = () => {
         <span class="user-icon pi pi-user"></span>
         <span class="username">{{ userStore.user?.username || 'User name' }}</span>
         <template v-if="userStore.isAuth">
-          <Divider layout="vertical" />
+          <Divider layout="vertical" class="hidden md:flex" />
+          <Divider layout="horizontal" class="flex md:hidden" />
           <Button
             label="Add New Cat"
             size="small"
@@ -36,7 +37,8 @@ const addNewCat = () => {
             @click="addNewCat"
           />
         </template>
-        <Divider layout="vertical" />
+        <Divider layout="vertical" class="hidden md:flex" />
+        <Divider layout="horizontal" class="flex md:hidden" />
         <Button
           label="Logout"
           size="small"
@@ -105,7 +107,11 @@ const addNewCat = () => {
   margin-right: 10px;
 }
 
-@media (max-width: 470px) {
+.add-cat-button {
+  width: 160px;
+}
+
+@media (max-width: 768px) {
   .auth-buttons,
   .user-info {
     flex-direction: column;
